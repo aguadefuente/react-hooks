@@ -7,7 +7,9 @@ function App() {
 
 	function handleCheck(tag: string, checked: boolean) {
 		const words = query.split(' ')
+		console.log('words', words)
 		const newWords = checked ? [...words, tag] : words.filter(w => w !== tag)
+		console.log('newWords', newWords)
 		setQuery(newWords.filter(Boolean).join(' ').trim())
 	}
 

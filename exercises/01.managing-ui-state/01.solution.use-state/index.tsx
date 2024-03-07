@@ -37,6 +37,7 @@ function App() {
 
 function MatchingPosts({ query }: { query: string }) {
 	const matchingPosts = getMatchingPosts(query)
+	console.log(matchingPosts)
 
 	return (
 		<ul className="post-list">
