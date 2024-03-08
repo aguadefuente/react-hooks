@@ -6,14 +6,19 @@ function App() {
 	const [query, setQuery] = useState('')
 	// 🐨 move the words variable from handleCheck to here
 	// 🦉 this is deriving state!
-
+	const words = query.split(' ')
 	// 🐨 create a dogChecked variable that is whether words includes "dog"
 	// and do the same for "cat" and "caterpiller"
 	// 🦉 this is deriving state from derived state!
+	const dogChecked = words.includes('dog')
+	const catChecked = words.includes('cat')
+	const caterpillarChecked = words.includes('caterpillar')
+	console.log(query)
+	console.log('dogChecked', dogChecked)
 
 	function handleCheck(tag: string, checked: boolean) {
 		// 🐨 move the words variable up to just below the useState call
-		const words = query.split(' ')
+		/*const words = query.split(' ')*/
 		const newWords = checked ? [...words, tag] : words.filter(w => w !== tag)
 		setQuery(newWords.filter(Boolean).join(' ').trim())
 	}
@@ -36,6 +41,7 @@ function App() {
 						<input
 							type="checkbox"
 							// 🐨 control the checked state of this checkbox by setting the checked prop
+							checked={dogChecked} //true or false
 							onChange={e => handleCheck('dog', e.currentTarget.checked)}
 						/>{' '}
 						🐶 dog
@@ -44,6 +50,7 @@ function App() {
 						<input
 							type="checkbox"
 							// 🐨 control the checked state of this checkbox by setting the checked prop
+							checked={catChecked}
 							onChange={e => handleCheck('cat', e.currentTarget.checked)}
 						/>{' '}
 						🐱 cat
@@ -52,6 +59,7 @@ function App() {
 						<input
 							type="checkbox"
 							// 🐨 control the checked state of this checkbox by setting the checked prop
+							checked={caterpillarChecked}
 							onChange={e =>
 								handleCheck('caterpillar', e.currentTarget.checked)
 							}
