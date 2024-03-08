@@ -14,6 +14,10 @@ function App() {
 		setQuery(e.currentTarget.value)
 	}
 
+	// const handleQuery: React.ChangeEventHandler<HTMLInputElement> = (e) {
+	// 	setQuery(e.currentTarget.value)
+	// }
+
 	return (
 		<div className="app">
 			<form>
