@@ -102,3 +102,7 @@ function MatchingPosts({ query }: { query: string }) {
 const rootEl = document.createElement('div')
 document.body.append(rootEl)
 ReactDOM.createRoot(rootEl).render(<App />)
+
+//leer documentación sobre Classes que sirve para entender URLSearchParams API
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Using_classes#class_declaration_hoisting
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes

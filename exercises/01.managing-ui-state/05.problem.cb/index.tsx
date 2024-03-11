@@ -3,16 +3,24 @@ import * as ReactDOM from 'react-dom/client'
 import { generateGradient, getMatchingPosts } from '#shared/blog-posts'
 
 // 🐨 make a function here called getQueryParam
+function getQueryParam() {
+	const params = new URLSearchParams(window.location.search)
+	return params.get('query') ?? ''
+}
 
 function App() {
 	// 🐨 move 👇 up to getQueryParam
+	/*
 	const params = new URLSearchParams(window.location.search)
 	const initialQuery = params.get('query') ?? ''
+	*/
 	// 🐨 move 👆 up to getQueryParam and return the initialQuery
 
 	// 🐨 pass getQueryParam into useState
-	const [query, setQuery] = useState(initialQuery)
+	const [query, setQuery] = useState(/*initialQuery*/ getQueryParam)
 	const words = query.split(' ')
+
+	console.log('query', query)
 
 	const dogChecked = words.includes('dog')
 	const catChecked = words.includes('cat')

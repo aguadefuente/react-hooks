@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import * as ReactDOM from 'react-dom/client'
 import { generateGradient, getMatchingPosts } from '#shared/blog-posts'
 import { setGlobalSearchParams } from '#shared/utils'
+//setGlobalSearchParams allows us to set the URL search params without triggering a full-page refresh
 
 function getQueryParam() {
 	const params = new URLSearchParams(window.location.search)
@@ -32,6 +33,8 @@ function App() {
 				onSubmit={e => {
 					e.preventDefault()
 					setGlobalSearchParams({ query })
+					//allows us to set the URL search params without
+					//triggering a full-page refresh
 				}}
 			>
 				<div>

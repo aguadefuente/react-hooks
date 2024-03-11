@@ -19,18 +19,25 @@ function App() {
 
 	useEffect(() => {
 		// 💯 you can use this to test whether your cleanup is working (make sure to include the console.log below as well)
-		// const hugeData = new Array(1_000_000).fill(new Array(1_000_000).fill('🐶🐱🐛'))
+		//to test that the memory is freed up when the component is unmounted.
+		const hugeData = new Array(1_000_000).fill(
+			new Array(1_000_000).fill('🐶🐱🐛'),
+		)
 
 		// 🐨 extract your event handler here into a function called updateQuery
-		window.addEventListener('popstate', () => {
-			// 💯 you can use this to test whether your cleanup is freeing up memory
-			// console.log(hugeData)
-
+		function updateQuery() {
+			console.log(hugeData) // 💯 you can use this to test whether your cleanup is freeing up memory
 			console.log('popstate event listener called')
 			setQuery(getQueryParam())
-		})
+		}
+
+		window.addEventListener('popstate', updateQuery)
 		// 🐨 return a function which removes the popstate event listener
 		// 📜 https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/removeEventListener
+		return () => {
+			window.removeEventListener('popstate', updateQuery)
+			console.log('unmounted')
+		}
 	}, [])
 
 	function handleCheck(tag: string, checked: boolean) {

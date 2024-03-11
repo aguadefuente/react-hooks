@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import * as ReactDOM from 'react-dom/client'
 import { generateGradient, getMatchingPosts } from '#shared/blog-posts'
 import { setGlobalSearchParams } from '#shared/utils'
@@ -10,10 +10,12 @@ function getQueryParam() {
 
 function App() {
 	const [query, setQuery] = useState(getQueryParam)
+	console.log('query', query)
 
-	const words = query.split(' ')
+	const words = query.split(' ') //return the query as array ["car", "dog"]
+	console.log('words', words)
 
-	const dogChecked = words.includes('dog')
+	const dogChecked = words.includes('dog') //true or false
 	const catChecked = words.includes('cat')
 	const caterpillarChecked = words.includes('caterpillar')
 
@@ -21,6 +23,15 @@ function App() {
 	// 🐨 in the useEffect callback, subscribe to window's popstate event
 	// 🐨 your event handler should call setQuery to getQueryParam()
 	// 📜 https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener
+	useEffect(() => {
+		window.addEventListener('popstate', () => setQuery(getQueryParam()))
+	}, [])
+	//para manejar el evento de cambio de historial (popstate),
+	//que actualiza la consulta cuando cambia la URL
+	///DOCUMENTACION:
+	//https://developer.mozilla.org/en-US/docs/Web/API/History_API
+	//https://developer.mozilla.org/en-US/docs/Web/API/Window/popstate_event
+	//https://www.w3schools.com/jsref/met_win_addeventlistener.asp
 
 	function handleCheck(tag: string, checked: boolean) {
 		const newWords = checked ? [...words, tag] : words.filter(w => w !== tag)
