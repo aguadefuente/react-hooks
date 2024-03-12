@@ -121,3 +121,8 @@ function MatchingPosts({ query }: { query: string }) {
 const rootEl = document.createElement('div')
 document.body.append(rootEl)
 ReactDOM.createRoot(rootEl).render(<App />)
+
+/* APUNTES TUTORIAL ANTERIOR
+USE-EFFECT
+
+*/

@@ -81,3 +81,39 @@ function MatchingPosts({ query }: { query: string }) {
 const rootEl = document.createElement('div')
 document.body.append(rootEl)
 ReactDOM.createRoot(rootEl).render(<App />)
+
+/*APUNTES TUTORIAL ANTERIOR
+
+USESTATE:
+sería sin destructurion
+const arr = React.useState("")
+const name = arr[0]
+const setName = arr[1]
+
+con destructuring sería
+const [name, setName] = React.useState("") 
+
+CONTROLED INPUT:
+function Greeting({initialName}){
+	const [name, setName] = React.useState(initialName) //initialvalue as prop
+
+	function handleChange(event){
+		setName(event.target.value)
+	}
+
+	return (
+		<div>
+		  <form>
+		    <label htmlFor="name">Name:</label>
+			//el value es el que hace al input controlled
+			<input value={name} id="name" onChange={handleChange}></input>
+		  </form>
+		</div>
+	)
+
+}
+
+function App(){
+	return <Greeting initialName="George"/>
+}
+*/
