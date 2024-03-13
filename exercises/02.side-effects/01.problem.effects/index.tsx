@@ -9,7 +9,7 @@ function getQueryParam() {
 }
 
 function App() {
-	const [query, setQuery] = useState(getQueryParam)
+	const [query, setQuery] = useState(getQueryParam) //lazy initialization
 	console.log('query', query)
 
 	const words = query.split(' ') //return the query as array ["car", "dog"]
