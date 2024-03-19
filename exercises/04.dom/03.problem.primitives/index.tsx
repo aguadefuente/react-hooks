@@ -22,20 +22,27 @@ function Tilt({
 	const tiltRef = useRef<HTMLVanillaTiltElement>(null)
 
 	// 🐨 move this into the useEffect directly
-	const vanillaTiltOptions = {
+	/*const vanillaTiltOptions = {
 		max,
 		speed,
 		glare,
 		'max-glare': maxGlare,
 	}
+	*/
 
 	useEffect(() => {
 		const { current: tiltNode } = tiltRef
 		if (tiltNode === null) return
+		const vanillaTiltOptions = {
+			max,
+			speed,
+			glare,
+			'max-glare': maxGlare,
+		}
 		VanillaTilt.init(tiltNode, vanillaTiltOptions)
 		return () => tiltNode.vanillaTilt.destroy()
 		// 🐨 instead of passing the options object here, pass each primitive option
-	}, [vanillaTiltOptions])
+	}, [/*vanillaTiltOptions*/ max, speed, glare, maxGlare])
 
 	return (
 		<div ref={tiltRef} className="tilt-root">

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import * as ReactDOM from 'react-dom/client'
 import VanillaTilt from 'vanilla-tilt'
 
@@ -8,7 +8,8 @@ interface HTMLVanillaTiltElement extends HTMLDivElement {
 
 function Tilt({ children }: { children: React.ReactNode }) {
 	// 🐨 create a tiltRef here with useRef<HTMLVanillaTiltElement>()
-
+	const tiltRef = useRef<HTMLVanillaTiltElement>(null)
+	/*
 	useEffect(() => {
 		// 🐨 get the tiltNode from tiltRef.current
 		const tiltNode = null as unknown as HTMLVanillaTiltElement
@@ -32,10 +33,24 @@ function Tilt({ children }: { children: React.ReactNode }) {
 		// 📜 Learn why we don't need to pass the tiltRef as a dependency:
 		// https://epicreact.dev/why-you-shouldnt-put-refs-in-a-dependency-array
 	}, [])
+	*/
+
+	useEffect(() => {
+		const { current: tiltNode } = tiltRef
+		if (tiltNode === null) return
+		const vanillaTiltOptions = {
+			max: 25,
+			speed: 400,
+			glare: true,
+			'max-glare': 0.5,
+		}
+		VanillaTilt.init(tiltNode, vanillaTiltOptions)
+		return () => tiltNode.vanillaTilt.destroy() //cleanup function
+	}, [])
 
 	// 🐨 add the `ref` prop to the `tilt-root` div here:
 	return (
-		<div className="tilt-root">
+		<div ref={tiltRef} className="tilt-root">
 			<div className="tilt-child">{children}</div>
 		</div>
 	)

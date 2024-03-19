@@ -34,7 +34,7 @@ function Tilt({
 		VanillaTilt.init(tiltNode, vanillaTiltOptions)
 		return () => tiltNode.vanillaTilt.destroy()
 		// 🐨 Add vanillaTiltOptions to fix the original bug
-	}, [])
+	}, [vanillaTiltOptions]) //Whenever values in the dependency array changes, React will call the returned cleanup function and then invoke the effect callback again
 
 	return (
 		<div ref={tiltRef} className="tilt-root">
