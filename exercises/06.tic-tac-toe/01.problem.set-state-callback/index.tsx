@@ -1,13 +1,13 @@
 import * as ReactDOM from 'react-dom/client'
 // 💰 here are some handy utilities for you:
-// import {
-// 	calculateNextValue,
-// 	calculateStatus,
-// 	calculateWinner,
-// 	type Squares,
-// } from '#shared/tic-tac-toe-utils'
+import {
+	calculateNextValue,
+	calculateStatus,
+	calculateWinner,
+	type Squares,
+} from '#shared/tic-tac-toe-utils'
 
-const defaultState = Array(9).fill(null)
+const defaultState = Array(9).fill(null) //nine null element in an array
 
 function Board() {
 	// 🐨 squares is the state for this component. Add useState for squares
